@@ -15,5 +15,7 @@ public class files
     public int file_number { get; set; }
     public String file_category { get; set; }
     public int pdf_file { get; set; }
+    public int category_id { get; set;}
+    public category category { get; set; }
     }
 }
