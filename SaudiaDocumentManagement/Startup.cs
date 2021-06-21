@@ -28,6 +28,7 @@ namespace SaudiaDocumentManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
+            //services.AddMvc();
             services.AddControllersWithViews();
         }
 
@@ -57,6 +58,13 @@ namespace SaudiaDocumentManagement
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}");
+            //});
         }
     }
 }

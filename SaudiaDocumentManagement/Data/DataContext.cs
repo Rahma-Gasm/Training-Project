@@ -9,7 +9,7 @@ public class DataContext : DbContext
     public DataContext(DbContextOptions<DataContext> options)
         : base(options)
     {
-
+         
     }
 
     public DbSet<admin> admin { get; set; }
