@@ -45,7 +45,12 @@ namespace SaudiaDocumentManagement.Controllers
         }
 
         // GET: admins/Create
-        public IActionResult Create()
+        public IActionResult Sign_in()
+        {
+            return View();
+        }
+
+        public IActionResult Sign_up()
         {
             return View();
         }

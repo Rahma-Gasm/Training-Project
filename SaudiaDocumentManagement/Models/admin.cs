@@ -9,12 +9,23 @@ public class admin
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    [Display(Name = "Enter your ID")]
+
+    [Display(Name = "ID: ")]
     public int admin_id { get; set; }
+
+    [Display(Name = "Full Name: ")]
     public String name { get; set; }
+
+    [Display(Name = "Email Address: ")]
+    public String Email { get; set; }
+
+    [Display(Name = "Password: ")]
     public string password { get; set; }
-    [Display(Name = "Enter your Password")]
+
+    [Display(Name = "Date Of Birth: ")]
     public DateTime date_of_birth { get; set; }
-    public int mobile_number { get; set; }
+
+    [Display(Name = "Mobile Number: ")]
+     public int mobile_number { get; set; }
 }
 }
