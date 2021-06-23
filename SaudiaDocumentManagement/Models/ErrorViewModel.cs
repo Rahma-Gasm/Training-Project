@@ -1,6 +1,6 @@
 using System;
 
-namespace SaudiaDocumentManagement.Models
+namespace SaudiaDocumentManagement
 {
     public class ErrorViewModel
     {

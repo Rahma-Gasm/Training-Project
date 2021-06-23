@@ -1,18 +1,22 @@
 ﻿@model SaudiaDocumentManagment.admin
-
 @{
-    ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Details";
 }
 
 <h1>Create</h1>
 
-<h4>admin</h4>
+<h4>Book</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="admin_id" class="control-label"></label>
+                <input asp-for="admin_id" class="form-control" />
+                <span asp-validation-for="admin_id" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="name" class="control-label"></label>
                 <input asp-for="name" class="form-control" />
@@ -22,11 +26,6 @@
                 <label asp-for="password" class="control-label"></label>
                 <input asp-for="password" class="form-control" />
                 <span asp-validation-for="password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="date_of_birth" class="control-label"></label>
-                <input asp-for="date_of_birth" class="form-control" />
-                <span asp-validation-for="date_of_birth" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="mobile_number" class="control-label"></label>
@@ -43,7 +42,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
