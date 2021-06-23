@@ -1,0 +1,55 @@
+﻿@model SaudiaDocumentManagment.activity_list
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>activity_list</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.admin_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.admin_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.update_date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.update_date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.category_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.category_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.sub_category_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.sub_category_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.process_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.process_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.file_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.file_name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.activity_id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SaudiaDocumentManagment.files>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.file_number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.file_category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pdf_file)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.category_id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.file_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.file_category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pdf_file)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.category_id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.file_id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.file_id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.file_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -59,6 +59,8 @@ namespace SaudiaDocumentManagement
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
+
+
             //app.UseMvc(routes =>
             //{
             //    routes.MapRoute(

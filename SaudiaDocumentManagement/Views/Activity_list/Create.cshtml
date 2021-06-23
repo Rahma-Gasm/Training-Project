@@ -1,0 +1,59 @@
+﻿@model SaudiaDocumentManagment.activity_list
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>activity_list</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="admin_name" class="control-label"></label>
+                <input asp-for="admin_name" class="form-control" />
+                <span asp-validation-for="admin_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="update_date" class="control-label"></label>
+                <input asp-for="update_date" class="form-control" />
+                <span asp-validation-for="update_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="category_name" class="control-label"></label>
+                <input asp-for="category_name" class="form-control" />
+                <span asp-validation-for="category_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="sub_category_name" class="control-label"></label>
+                <input asp-for="sub_category_name" class="form-control" />
+                <span asp-validation-for="sub_category_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="process_name" class="control-label"></label>
+                <input asp-for="process_name" class="form-control" />
+                <span asp-validation-for="process_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="file_name" class="control-label"></label>
+                <input asp-for="file_name" class="form-control" />
+                <span asp-validation-for="file_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
