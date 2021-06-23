@@ -41,3 +41,6 @@
     <a asp-action="Edit" asp-route-id="@Model.admin_id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

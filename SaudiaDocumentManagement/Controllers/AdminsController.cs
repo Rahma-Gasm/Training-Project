@@ -49,6 +49,8 @@ namespace SaudiaDocumentManagement.Controllers
         {
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
 
         public IActionResult Sign_up()
         {
@@ -60,7 +62,7 @@ namespace SaudiaDocumentManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("admin_id,name,password,date_of_birth,mobile_number")] admin admin)
+        public async Task<IActionResult> Sign_up([Bind("name,password,date_of_birth,mobile_number")] admin admin)
         {
             if (ModelState.IsValid)
             {
