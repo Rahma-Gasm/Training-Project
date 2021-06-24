@@ -1,22 +1,30 @@
-﻿@model SaudiaDocumentManagment.admin
-@{
-    ViewData["Title"] = "Details";
-}
+﻿
+@model SaudiaDocumentManagment.admin
 
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <hr />
 <div class="row">
     <div class="col-md-4">
+        <link rel="stylesheet" href="css/bootstrap.css">   
         <form asp-action="Create">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-               <center><label asp-for="admin_id" class="control-label"></label>
-               <input asp-for="admin_id" class="form-control" /></center>
-               <center><span asp-validation-for="admin_id" class="text-danger"></span></center>
+                <center>
+                    <label asp-for="admin_id" class="control-label"></label>
+                    <input asp-for="admin_id" class="form-control" />
+                </center>
+                <center><span asp-validation-for="admin_id" class="text-danger"></span></center>
             </div>
             <div class="form-group">
-                <center><label asp-for="password" class="control-label"></label>
-                <input asp-for="password" class="form-control" /></center>
+                <center>
+                    <label asp-for="password" class="control-label"></label>
+                    <input asp-for="password" class="form-control" />
+                </center>
                 <center><span asp-validation-for="password" class="text-danger"></span></center>
             </div>
             <div class="form-group">
