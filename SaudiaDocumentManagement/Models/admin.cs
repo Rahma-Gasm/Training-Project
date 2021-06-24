@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SaudiaDocumentManagment
  {
-public class admin
+public class admin : UserIdentity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

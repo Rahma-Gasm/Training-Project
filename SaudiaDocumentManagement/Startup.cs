@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SaudiaDocumentManagement.Models;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace SaudiaDocumentManagement
 {
@@ -28,6 +28,8 @@ namespace SaudiaDocumentManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+        .AddEntityFrameworkStores<DataContext>();
             //services.AddMvc();
             services.AddControllersWithViews();
         }
@@ -51,6 +53,7 @@ namespace SaudiaDocumentManagement
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
