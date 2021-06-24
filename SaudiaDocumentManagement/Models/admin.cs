@@ -16,9 +16,6 @@ public class admin
     [Display(Name = "Full Name: ")]
     public String name { get; set; }
 
-    [Display(Name = "Email Address: ")]
-    public String Email { get; set; }
-
     [Display(Name = "Password: ")]
     public string password { get; set; }
 
