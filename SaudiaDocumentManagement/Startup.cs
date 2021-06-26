@@ -30,7 +30,7 @@ namespace SaudiaDocumentManagement
             services.AddDbContextPool<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
             services.AddIdentity<IdentityUser, IdentityRole>()
         .AddEntityFrameworkStores<DataContext>();
-            //services.AddMvc();
+            services.AddMvc();
             services.AddControllersWithViews();
         }
 
