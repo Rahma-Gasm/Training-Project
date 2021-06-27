@@ -1,0 +1,56 @@
+@model SaudiaDocumentManagment.RegisterViewModel
+@{
+    ViewBag.Title = "User Registration";
+}
+<h1>User Registration</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <center>
+                <div class="form-group">
+                    <label asp-for="id"></label>
+                    <input asp-for="id" class="form-control" />
+                    <span asp-validation-for="id" class="text-danger"></span>
+                </div>
+            </center>
+            <center>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </center>
+            <center>
+                <div class="form-group">
+                    <label asp-for="EmailConfirmed"></label>
+                    <input asp-for="EmailConfirmed" class="form-control" />
+                    <span asp-validation-for="EmailConfirmed" class="text-danger"></span>
+                </div>
+            </center>
+            <center>
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+            </center>
+            <center>
+                <div class="form-group">
+                    <label asp-for="PasswordHash"></label>
+                    <input asp-for="PasswordHash" class="form-control" />
+                    <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                </div>
+            </center>
+            <center>
+                <div class="form-group">
+                    <label asp-for="PConfirmation"></label>
+                    <input asp-for="PConfirmation" class="form-control" />
+                    <span asp-validation-for="PConfirmation" class="text-danger"></span>
+                </div>
+            </center>
+            <button type="submit" class="btn btn-primary">SignUp</button>
+        </form>
+    </div>
+</div>

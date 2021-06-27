@@ -51,7 +51,7 @@ namespace SaudiaDocumentManagement
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            //app.UseIdentity();
             app.UseAuthorization();
             app.UseAuthentication();
 

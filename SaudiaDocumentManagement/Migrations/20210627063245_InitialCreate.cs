@@ -3,10 +3,28 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SaudiaDocumentManagement.Migrations
 {
-    public partial class IdentityCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "activity_List",
+                columns: table => new
+                {
+                    activity_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    admin_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    update_date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    category_name = table.Column<int>(type: "int", nullable: false),
+                    sub_category_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    process_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    file_name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_activity_List", x => x.activity_id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -44,6 +62,20 @@ namespace SaudiaDocumentManagement.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "category",
+                columns: table => new
+                {
+                    category_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    category_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    parent_id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_category", x => x.category_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -152,6 +184,30 @@ namespace SaudiaDocumentManagement.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "files",
+                columns: table => new
+                {
+                    file_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    file_number = table.Column<int>(type: "int", nullable: false),
+                    file_category = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    pdf_file = table.Column<int>(type: "int", nullable: false),
+                    category_id = table.Column<int>(type: "int", nullable: false),
+                    category_id1 = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_files", x => x.file_id);
+                    table.ForeignKey(
+                        name: "FK_files_category_category_id1",
+                        column: x => x.category_id1,
+                        principalTable: "category",
+                        principalColumn: "category_id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -190,10 +246,18 @@ namespace SaudiaDocumentManagement.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_files_category_id1",
+                table: "files",
+                column: "category_id1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "activity_List");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -210,10 +274,16 @@ namespace SaudiaDocumentManagement.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "files");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "category");
         }
     }
 }

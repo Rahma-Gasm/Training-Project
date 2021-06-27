@@ -10,8 +10,8 @@ using SaudiaDocumentManagement.Models;
 namespace SaudiaDocumentManagement.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210626121508_IdentityCreate")]
-    partial class IdentityCreate
+    [Migration("20210627063245_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -245,30 +245,6 @@ namespace SaudiaDocumentManagement.Migrations
                     b.HasKey("activity_id");
 
                     b.ToTable("activity_List");
-                });
-
-            modelBuilder.Entity("SaudiaDocumentManagment.admin", b =>
-                {
-                    b.Property<int>("admin_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("date_of_birth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("mobile_number")
-                        .HasColumnType("int");
-
-                    b.Property<string>("name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("admin_id");
-
-                    b.ToTable("admin");
                 });
 
             modelBuilder.Entity("SaudiaDocumentManagment.category", b =>
