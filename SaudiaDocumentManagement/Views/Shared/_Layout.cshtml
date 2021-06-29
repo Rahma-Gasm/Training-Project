@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+@inject SignInManager<IdentityUser> signInManager;
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -38,8 +40,32 @@
                         Menu
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="https://localhost:5001/Account/Register">Sign up</a>
-                        <a class="dropdown-item" href="https://localhost:5001/admins/sign_in">Sign in</a>
+
+                        @if (signInManager.IsSignedIn(User))
+                        {
+
+                            <form method="post" asp-action="logout" asp-controller="account">
+                                <button type="submit" class="nav-link btn btn-link py-0" style="width:auto">
+                                    logout @User.Identity.Name
+
+                                </button>
+
+                            </form>
+                        }
+                        else
+                        {
+
+
+                            
+                            <a asp-action="register"asp-controller="account" class="dropdown-item" >Sign up</a>
+
+
+                            <a asp-action="login" asp-controller="account" class="dropdown-item">Sign in</a>
+                        
+                            
+                            }
+
+
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Documents</a>
                     </div>
