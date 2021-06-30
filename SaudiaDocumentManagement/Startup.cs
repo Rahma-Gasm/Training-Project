@@ -12,6 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using SaudiaDocumentManagement.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace SaudiaDocumentManagement
 {
@@ -36,7 +38,13 @@ namespace SaudiaDocumentManagement
                  }
                 ).AddEntityFrameworkStores<DataContext>();
 
-            services.AddMvc();
+            /**services.AddMvc(options => {
+                var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            }).AddXmlSerializerFormatters();
+            services.AddScoped<Ident>**/
 
             services.AddControllersWithViews();
         }
