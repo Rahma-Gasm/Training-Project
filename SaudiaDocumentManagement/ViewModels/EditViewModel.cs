@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SaudiaDocumentManagment
+namespace SaudiaDocumentManagement.ViewModels
 {
     public class EditViewModel
     {
@@ -16,11 +16,14 @@ namespace SaudiaDocumentManagment
         public String Email { get; set; }
         [Display(Name = "Username: ")]
         public String UserName { get; set; }
-        [Display(Name = "Password: ")]
+        [Display(Name = "Old Password: ")]
+        [DataType(DataType.Password)]
+        public String oldPass { get; set; }
+        [Display(Name = "New Password: ")]
         [DataType(DataType.Password)]
         public String PasswordHash { get; set; }
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password: ")]
+        [Display(Name = "Confirm New Password: ")]
         [Compare("PasswordHash", ErrorMessage = "Password and confirmation password do not match.")]
         public String PConfirmation { get; set; }
     }
