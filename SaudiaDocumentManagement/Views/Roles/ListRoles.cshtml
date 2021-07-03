@@ -1,0 +1,39 @@
+﻿@model IEnumerable<IdentityRole>
+
+@{
+    ViewBag.Title = "All Rolles";
+
+}
+</h1>All Rolles</h1>
+
+@if (Model.Any())
+{
+
+}
+else
+{
+
+    <div class="card">
+
+    </div>
+    <div class="card-header">
+
+        No roles created yet!
+    </div>
+
+
+        <div class="card-body">
+        </div>
+
+        <h5 class="card-title">
+            use the button below to creat a role
+        </h5>
+        <a class="btn btn-primary" style="width:auto"
+           asp-controller="admin" asp-action="CreateRole">
+            Create Role
+        </a>
+
+
+
+
+            }
