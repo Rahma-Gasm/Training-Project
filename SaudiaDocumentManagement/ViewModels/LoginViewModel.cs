@@ -15,7 +15,7 @@ namespace SaudiaDocumentManagement
         [Required]
         [Display(Name = "Password: ")]
         [DataType(DataType.Password)]
-        public String PasswordHash { get; set; }
+        public String Password { get; set; }
 
 
         [Display(Name = "Remember me ")]

@@ -25,11 +25,11 @@ namespace SaudiaDocumentManagment
         [Required]
         [Display(Name = "Password: ")]
         [DataType(DataType.Password)]
-        public String PasswordHash { get; set; }
+        public String Password { get; set; }
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password: ")]
-        [Compare("PasswordHash", ErrorMessage = "Password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Password and confirmation password do not match.")]
         public String PConfirmation { get; set; }
     }
 }

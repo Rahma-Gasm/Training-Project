@@ -45,7 +45,7 @@ namespace SaudiaDocumentManagement.Controllers
 
 
                 var user = new IdentityUser { UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber };
-                var result = await userManager.CreateAsync(user, model.PasswordHash);
+                var result = await userManager.CreateAsync(user, model.Password);
 
                 userManager.AddToRoleAsync(user, "Admin").Wait();
                 //check if the user created succsfuly 
@@ -79,7 +79,7 @@ namespace SaudiaDocumentManagement.Controllers
 
 
 
-                var result = await signInManager.PasswordSignInAsync(model.UserName, model.PasswordHash, model.RmemberMe, false);
+                var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RmemberMe, false);
 
 
                 //check if the user created succsfuly 
@@ -99,7 +99,6 @@ namespace SaudiaDocumentManagement.Controllers
         {
             var user = await userManager.FindByIdAsync(model.Id);
 
-
             if (user == null)
             {
                 ViewBag.ErrorMessage = $"User with Id = {model.Id} cannot be found";
@@ -110,7 +109,7 @@ namespace SaudiaDocumentManagement.Controllers
                 user.Email = model.Email;
                 user.UserName = model.UserName;
                 user.PhoneNumber = model.PhoneNumber;
-                var newPass = userManager.PasswordHasher.HashPassword(user, model.PasswordHash);
+                var newPass = userManager.PasswordHasher.HashPassword(user, model.Password);
                 var oldPass = userManager.PasswordHasher.HashPassword(user, model.oldPass);
                 await userManager.RemovePasswordAsync(user);
 
