@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SaudiaDocumentManagement.Models;
 using SaudiaDocumentManagment;
-
+using SaudiaDocumentManagement.ViewModels;
 
 namespace SaudiaDocumentManagement.Controllers
 {
@@ -55,16 +55,52 @@ namespace SaudiaDocumentManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("category_id,category_name,parent_id")] category category)
+        public async Task<IActionResult> Create(category category)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
+                if (!categoryExists(category.category_name))
+                {
+                    _context.Add(category);
+                    await _context.SaveChangesAsync();
+                }
+                /** else
+                 {
+                 
+                 }**/
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
         }
+        [HttpGet]
+        public IActionResult CreateSub()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateSub(CreateSubCategoryViewModel model)
+        {
+            category Sub = new category();
+            if (ModelState.IsValid)
+            {
+                if (!categoryExists(model.SubCategory))
+                {
+                    var category = SearchByName(model.Category);
+                    Sub.category_name = model.SubCategory;
+                    Sub.parent_id = category.category_id;
+                    _context.Add(Sub);
+                    await _context.SaveChangesAsync();
+                }
+              /**  else
+                {
+                    return RedirectToAction(nameof(Index));
+                }**/
+
+            }
+            return View(model);
+        }
+
 
         // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -149,6 +185,19 @@ namespace SaudiaDocumentManagement.Controllers
         private bool categoryExists(int id)
         {
             return _context.category.Any(e => e.category_id == id);
+        }
+        private bool categoryExists(String name)
+        {
+            return _context.category.Any(e => e.category_name == name);
+        }
+        public category SearchByName(string categoryName)
+        {
+            category Category = null;
+            if (!String.IsNullOrEmpty(categoryName))
+            {
+                Category = _context.category.FirstOrDefault(c => c.category_name == categoryName);
+            }
+            return Category;
         }
     }
 

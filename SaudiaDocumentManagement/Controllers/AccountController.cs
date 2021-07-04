@@ -79,7 +79,7 @@ namespace SaudiaDocumentManagement.Controllers
 
 
 
-                var result = await signInManager.PasswordSignInAsync(model.UserName, model.PasswordHash, model.RmemberMe, false);
+                var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RmemberMe, false);
 
 
                 //check if the user created succsfuly 
@@ -109,12 +109,10 @@ namespace SaudiaDocumentManagement.Controllers
                 user.Email = model.Email;
                 user.UserName = model.UserName;
                 user.PhoneNumber = model.PhoneNumber;
-                var newPass = userManager.PasswordHasher.HashPassword(user, model.PasswordHash);
-                var oldPass = userManager.PasswordHasher.HashPassword(user, model.oldPass);
-                await userManager.RemovePasswordAsync(user);
+                if(!string.IsNullOrWhiteSpace(model.oldPass) || !string.IsNullOrWhiteSpace(model.Password)){
+                    await userManager.ChangePasswordAsync(user, model.oldPass, model.Password);
 
-                await userManager.ChangePasswordAsync(user, model.oldPass, model.PasswordHash);
-
+                }
 
                 var result = await userManager.UpdateAsync(user);
 
