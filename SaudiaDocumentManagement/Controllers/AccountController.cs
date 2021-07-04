@@ -47,7 +47,7 @@ namespace SaudiaDocumentManagement.Controllers
                 var user = new IdentityUser { UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber };
                 var result = await userManager.CreateAsync(user, model.PasswordHash);
 
-                userManager.AddToRoleAsync(user, "Admin").Wait();
+                await userManager.AddToRoleAsync(user, "Admin");
                 //check if the user created succsfuly 
                 if (result.Succeeded)
 
@@ -76,8 +76,6 @@ namespace SaudiaDocumentManagement.Controllers
             if (ModelState.IsValid)
             {
                 //if valid, code will create new user
-
-
 
                 var result = await signInManager.PasswordSignInAsync(model.UserName, model.PasswordHash, model.RmemberMe, false);
 
@@ -110,13 +108,8 @@ namespace SaudiaDocumentManagement.Controllers
                 user.Email = model.Email;
                 user.UserName = model.UserName;
                 user.PhoneNumber = model.PhoneNumber;
-                var newPass = userManager.PasswordHasher.HashPassword(user, model.PasswordHash);
-                var oldPass = userManager.PasswordHasher.HashPassword(user, model.oldPass);
-                await userManager.RemovePasswordAsync(user);
 
-                await userManager.AddPasswordAsync(user, newPass);
-
-               // await userManager.ChangePasswordAsync(user, oldPass, newPass);
+                await userManager.ChangePasswordAsync(user, model.oldPass, model.PasswordHash);
 
 
                 var result = await userManager.UpdateAsync(user);
@@ -159,16 +152,10 @@ namespace SaudiaDocumentManagement.Controllers
                 model.Id = user.Id;
                 model.Email = user.Email;
                 model.PhoneNumber = user.PhoneNumber;
-                model.oldPass = user.PasswordHash;
                 model.UserName = user.UserName;
             }
 
             return View(model);
-        }
-        [HttpGet]
-        public IActionResult Delete()
-        {
-            return RedirectToAction("ListUsers", "Account");
         }
         [HttpPost]
     public async Task<IActionResult> Delete(string id)
@@ -194,7 +181,17 @@ namespace SaudiaDocumentManagement.Controllers
                 ModelState.AddModelError("", error.Description);
             }
 
-            return View("ListUsers");
+            
+            try{
+            foreach (var modelState in ViewData.ModelState.Values) {
+                foreach (var error in modelState.Errors) {
+                    Console.WriteLine("Error: " + ModelState.Values);
+                }
+            }
+            }catch(Exception ex){
+                    Console.WriteLine(ex.Message);
+            }
+            return RedirectToAction("ListUsers", "Account");
         }
     }
         [HttpGet]
