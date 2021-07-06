@@ -54,20 +54,14 @@
                         }
                         else
                         {
-
-
-                            
+    
                             <a asp-action="register"asp-controller="account" class="dropdown-item" >Sign up</a>
-
-
                             <a asp-action="login" asp-controller="account" class="dropdown-item">Sign in</a>
-                        
-                            
+                                                   
                             }
 
-
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Documents</a>
+                        <a class="dropdown-item" href="https://localhost:5001/categories/index">Documents</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -133,9 +127,15 @@
                         <h6 class="text-uppercase fw-bold mb-4">
                             get in touch
                         </h6>
-                        <a class="fb-ic">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
+                        <div class="col-md-12 mb-4">
+
+                            <button type="button" class="btn btn-li"><i class="fab fa-linkedin-in"></i></button>
+                            <button type="button" class="btn btn-pin"><i class="fab fa-pinterest"></i></button>
+                            <button type="button" class="btn btn-dribbble"><i class="fab fa-dribbble left"></i></button>
+                            <button type="button" class="btn btn-vk"><i class="fab fa-vk"></i></button>
+                            <button type="button" class="btn btn-git"><i class="fab fa-github"></i></button>
+
+                        </div>
                     </div>
                     <!-- Grid column -->
                 </div>
