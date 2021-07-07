@@ -27,7 +27,7 @@ namespace SaudiaDocumentManagement.Controllers
         public async Task<IActionResult> logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("index", "home");
+            return RedirectToAction("Login", "Account");
         }
 
         [HttpGet]
@@ -77,10 +77,7 @@ namespace SaudiaDocumentManagement.Controllers
             {
                 //if valid, code will create new user
 
-
-
                 var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RmemberMe, false);
-
 
                 //check if the user created succsfuly 
                 if (result.Succeeded)

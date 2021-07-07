@@ -19,10 +19,10 @@
     </div>
     <div class="card-footer">
         <form method="post" asp-action="Delete" asp-controller="Account" asp-route-id="@user.Id" class="mt-3">
-            <input type="submit" name="Delete" value="Delete" onclick="return confirm('Are you sure you want to Delete @user.UserName user?')" class="btn btn-primary"/>
+            <input type="submit" name="Delete" value="Delete" onclick="return confirm('Are you sure you want to Delete @user.UserName user?')" class="btn btn-danger"/>
         </form>
         <br />
-        <a asp-action="Edit" asp-controller="Account" asp-route-id="@user.Id" class="btn btn-danger">Edit</a>
+        <a asp-action="Edit" asp-controller="Account" asp-route-id="@user.Id" class="btn btn-primary">Edit</a>
     </div>
 </div>
     }

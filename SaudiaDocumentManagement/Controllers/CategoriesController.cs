@@ -45,9 +45,10 @@ namespace SaudiaDocumentManagement.Controllers
         }
 
         // GET: Categories/Create
+        [HttpGet]
         public IActionResult Create()
         {
-            return View();
+           return View();
         }
 
         // POST: Categories/Create
@@ -70,7 +71,7 @@ namespace SaudiaDocumentManagement.Controllers
                  }**/
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View("Index", category);
         }
         [HttpGet]
         public IActionResult CreateSub()
@@ -98,7 +99,7 @@ namespace SaudiaDocumentManagement.Controllers
                 }**/
 
             }
-            return View(model);
+            return RedirectToAction(nameof(Index));
         }
 
 
@@ -195,7 +196,8 @@ namespace SaudiaDocumentManagement.Controllers
             category Category = null;
             if (!String.IsNullOrEmpty(categoryName))
             {
-                Category = _context.category.FirstOrDefault(c => c.category_name == categoryName);
+                //Category = _context.category.FirstOrDefault(c => c.category_name == categoryName);
+                Category = _context.category.Where(e => e.category_name == categoryName).FirstOrDefault();
             }
             return Category;
         }
