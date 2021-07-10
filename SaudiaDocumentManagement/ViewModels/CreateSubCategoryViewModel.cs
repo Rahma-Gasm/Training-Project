@@ -9,10 +9,10 @@ namespace SaudiaDocumentManagement.ViewModels
     public class CreateSubCategoryViewModel
     {
         [Required]
-        [Display(Name = "Enter the main categry name")]
+        [Display(Name = "Enter the main categry name: ")]
         public String Category { get; set; }
         [Required]
-        [Display(Name = "Enter the sub categry name")]
+        [Display(Name = "Enter the subcategry name: ")]
         public String SubCategory { get; set; }
 
 
