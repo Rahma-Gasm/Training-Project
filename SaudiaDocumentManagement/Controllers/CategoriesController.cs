@@ -154,30 +154,16 @@ namespace SaudiaDocumentManagement.Controllers
             return View(category);
         }
 
-        // GET: Categories/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var category = await _context.category
-                .FirstOrDefaultAsync(m => m.category_id == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return View(category);
-        }
-
         // POST: Categories/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var category = await _context.category.FindAsync(id);
+            if(category.parent_id == 0)
+            {
+                _context.category.RemoveRange(_context.category.Where(x => x.parent_id == category.category_id));
+            }
             _context.category.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
