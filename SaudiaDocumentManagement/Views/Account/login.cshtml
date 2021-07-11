@@ -7,30 +7,35 @@
     <div class="col-md-4">
         <form method="post">
             <center>
+                <br />
                 <div class="form-group">
                     <label asp-for="UserName"></label>
                     <input asp-for="UserName" class="form-control" />
                     <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
             </center>
+            <br />
             <center>
                 <div class="form-group">
                     <label asp-for="Password"></label>
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="RmemberMe">
-                            <input asp-for="RmemberMe" />
-                            <span asp-validation-for="RmemberMe"> </span>
-                            @Html.DisplayNameFor(m => m.RmemberMe)
-                        </label>
-                    </div>
+            </center>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label asp-for="RmemberMe">
+                        <input asp-for="RmemberMe" />
+                        <span asp-validation-for="RmemberMe"> </span>
+                        @Html.DisplayNameFor(m => m.RmemberMe)
+                    </label>
                 </div>
+            </div>
+            <br />
+            <center>
+                <button type="submit" class="btn btn-primary">login</button>
+            </center>
 
-</center>
-            <button type="submit" class="btn btn-primary">login</button>
         </form>
     </div>
 </div>
