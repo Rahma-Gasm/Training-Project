@@ -26,24 +26,6 @@ namespace SaudiaDocumentManagement.Controllers
             return View(await _context.category.ToListAsync());
         }
 
-        // GET: Categories/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var category = await _context.category
-                .FirstOrDefaultAsync(m => m.category_id == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return View(category);
-        }
-
         // GET: Categories/Create
         [HttpGet]
         public IActionResult Create()
@@ -58,22 +40,18 @@ namespace SaudiaDocumentManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(category category)
         {
-            ViewBag.Msg = null;
             if (ModelState.IsValid)
             {
                 if (!categoryExists(category.category_name))
                 {
                     _context.Add(category);
                     await _context.SaveChangesAsync();
-                    return View(category);
                 }
-                else
-                {
-                    ViewBag.Msg = "Category already exists";
-                    return View("Create");
-
-                }
-
+                /** else
+                 {
+                 
+                 }**/
+                return RedirectToAction(nameof(Index));
             }
             return View("Index", category);
         }
@@ -83,6 +61,7 @@ namespace SaudiaDocumentManagement.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateSub(CreateSubCategoryViewModel model)
@@ -195,8 +174,3 @@ namespace SaudiaDocumentManagement.Controllers
     }
 
 }
-
-
-
-
-/////////////////////////////***************************************************************
