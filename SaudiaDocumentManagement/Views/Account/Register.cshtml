@@ -3,11 +3,12 @@
     ViewBag.Title = "User Registration";
 }
 
+
+
 <div class="row justify-content-center">
     <div class="col-md-4">
         <form method="post">
             <center>
-                <br />
                 <div class="form-group">
                     <label asp-for="Email"></label>
                     <input asp-for="Email" class="form-control" />
@@ -26,6 +27,13 @@
                     <label asp-for="UserName"></label>
                     <input asp-for="UserName" class="form-control" />
                     <span asp-validation-for="UserName" class="text-danger"></span>
+
+                    @if (ViewBag.MsgUser != null)
+                    {
+                        <p class="text-danger">@ViewBag.MsgUser</p>
+                    }
+
+
                 </div>
             </center>
             <center>
@@ -42,17 +50,15 @@
                     <span asp-validation-for="PConfirmation" class="text-danger"></span>
                 </div>
             </center>
-            <div asp-validation-summary="All" class="text-danger"></div>
+
             <center>
                 <div class="form-group">
                     <label asp-for="PhoneNumber"></label>
                     <input asp-for="PhoneNumber" class="form-control" />
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
-                <br />
-                <button type="submit" class="btn btn-primary">Sign Up</button>
             </center>
-            
+            <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
     </div>
 </div>

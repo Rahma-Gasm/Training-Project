@@ -58,21 +58,26 @@ namespace SaudiaDocumentManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(category category)
         {
+            ViewBag.Msg = null;
             if (ModelState.IsValid)
             {
                 if (!categoryExists(category.category_name))
                 {
                     _context.Add(category);
                     await _context.SaveChangesAsync();
+                    return View(category);
                 }
-                /** else
-                 {
-                 
-                 }**/
-                return RedirectToAction(nameof(Index));
+                else
+                {
+                    ViewBag.Msg = "Category already exists";
+                    return View("Create");
+
+                }
+
             }
             return View("Index", category);
         }
+
         [HttpGet]
         public IActionResult CreateSub()
         {

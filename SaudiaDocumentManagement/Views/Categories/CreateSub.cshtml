@@ -27,12 +27,21 @@
             <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
             </div>
+
+            @if (ViewBag.MsgSub != null)
+            {
+                <p class="text-danger">@ViewBag.MsgSub</p>
+            }
+
+
         </form>
     </div>
 </div>
 
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

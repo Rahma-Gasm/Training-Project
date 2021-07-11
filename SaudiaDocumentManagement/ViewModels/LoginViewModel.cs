@@ -9,19 +9,20 @@ namespace SaudiaDocumentManagement
     public class LoginViewModel
     {
 
+
         [Required]
-        [Display(Name = "Username: ")]
-        public String UserName { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
+
         [Required]
-        [Display(Name = "Password: ")]
         [DataType(DataType.Password)]
-        public String Password { get; set; }
+        public string Password { get; set; }
 
-
-        [Display(Name = "Remember me ")]
-        public bool RmemberMe { get; set; }
-
-
+        [Display(Name = "Remember me")]
+        public bool RememberMe { get; set; }
     }
+
+
 }
+
 

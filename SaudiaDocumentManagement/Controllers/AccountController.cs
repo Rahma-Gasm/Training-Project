@@ -12,7 +12,7 @@ using SaudiaDocumentManagement.ViewModels;
 using SaudiaDocumentManagment;
 
 namespace SaudiaDocumentManagement.Controllers
-{
+{ 
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> userManager;
@@ -29,6 +29,8 @@ namespace SaudiaDocumentManagement.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
+        
+
 
         [HttpGet]
         public IActionResult Register()
@@ -55,11 +57,19 @@ namespace SaudiaDocumentManagement.Controllers
                     await signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("index", "home");
                 }
+               
+                
+                    else
+                    {
+                        ViewBag.MsgUser = "username is already taken";
+                        return View("Register");
+                    }
+                
 
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
+                //foreach (var error in result.Errors)
+                //{
+                //    ModelState.AddModelError("", error.Description);
+                //}
             }
             //pass the model object to view,and display any validation error may happend 
             return View(model);
@@ -72,25 +82,27 @@ namespace SaudiaDocumentManagement.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            //check if incoming model object is valid
             if (ModelState.IsValid)
             {
                 //if valid, code will create new user
 
-                var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RmemberMe, false);
+
+
+                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
 
                 //check if the user created succsfuly 
                 if (result.Succeeded)
-
                 {
-
-                    return RedirectToAction("ListUsers", "Account");
+                    return RedirectToAction("index", "home");
                 }
 
-                ModelState.AddModelError(string.Empty, "Invalid Credentials ");
+                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
             }
+
             return View(model);
         }
+
         [HttpPost]
         public async Task<IActionResult> Edit(EditViewModel model)
         {

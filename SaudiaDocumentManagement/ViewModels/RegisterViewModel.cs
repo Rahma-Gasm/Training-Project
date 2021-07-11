@@ -7,8 +7,10 @@ namespace SaudiaDocumentManagment
 {
     public class RegisterViewModel
     {
-       [Required]
+        [Required]
         [Display(Name = "Phone Number: ")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         public String PhoneNumber { get; set; }
         [Required]
         [Display(Name = "Email Address: ")]
