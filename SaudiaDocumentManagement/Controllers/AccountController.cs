@@ -88,7 +88,7 @@ namespace SaudiaDocumentManagement.Controllers
 
 
 
-                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
 
 
                 //check if the user created succsfuly 

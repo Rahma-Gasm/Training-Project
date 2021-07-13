@@ -17,58 +17,62 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <img src="~/Images/Saudia.jpeg" alt="">
 
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="https://localhost:5001">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#down">About</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        Menu
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                        @if (signInManager.IsSignedIn(User))
-                        {
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <img src="~/Images/Saudia.jpeg" />
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-                            <form method="post" asp-action="logout" asp-controller="account">
-                                <button type="submit" class="nav-link btn btn-link py-0" style="width:auto">
+    <div class="collapse navbar-collapse" id="navbarColor03">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="https://localhost:5001">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <!-- Button trigger modal -->
+        <li class="nav-item">
+<a class="nav-link" data-toggle="modal" data-target="#popUpAbout">About us</a>
+@* <div>
+    <partial name="About" />
+</div> *@
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+          <div class="dropdown-menu">
+              <a class="dropdown-item" asp-action="index" asp-controller="Categories">Categories</a>
+            <a class="dropdown-item" asp-action="listUsers" asp-controller="Account">Users List</a>
+            <a class="dropdown-item" asp-action="Index" asp-controller="Activity_list">Recent Activities</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="https://www.saudia.com/help/faqs/faq">FAQ'S</a>
+          </div>
+        </li>
+      </ul>
+        @if (signInManager.IsSignedIn(User))
+                        { 
+                            <ul class="navbar-nav">
+                            <form class="d-flex" method="post" asp-action="logout" asp-controller="account">
+                                <button style="background-color: transparent; border-color: transparent; cursor: default;" type="submit" class="nav-link">
                                     logout @User.Identity.Name
-
                                 </button>
-
                             </form>
+                            </ul>
                         }
                         else
-                        {
-
-                            <a asp-action="register" asp-controller="account" class="dropdown-item">Sign up</a>
-                            <a asp-action="login" asp-controller="account" class="dropdown-item">Sign in</a>
-
+                        { 
+                                        <ul class="navbar-nav">
+                            <a class="nav-link" asp-action="register" asp-controller="account">Sign up</a>
+                            <p class="nav-link"> | </p>
+                            <a class="nav-link" asp-action="login" asp-controller="account">Sign in</a> 
+                                        </ul>
                         }
-
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="https://localhost:5001/categories/index">Documents</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.saudia.com/help/faqs/faq">FAQ'S</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    </div>
+  </div>
+</nav>
     <div>
         @RenderBody()
     </div>
@@ -87,15 +91,12 @@
                             <!-- Content -->
                             <h6 class="text-uppercase fw-bold mb-4">
                                 <br />
-                                <i class="fas fa-gem me-3"></i>about us
+                                <i class="fas fa-gem me-3"></i>development team
                                 <hr />
                             </h6>
-                            <p class="text-justify">
-                                Saudia is formerly known as Saudi Arabian Airlines. The airline's main
-                                operational base is at King Abdulaziz International Airport in Jeddah. It operates
-                                domestic and international scheduled flights to over 85 destinations in the Middle
-                                East, Africa, Asia, Europe, and North America.
-                            </p>
+                            <p class="text-justify text-uppercase"> moayad emad aboshal</p>
+                               <p class="text-justify text-uppercase"> rahma al sharef</p>
+                                <p class="text-justify text-uppercase">raghad al harbi</p>
                         </div>
 
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
@@ -137,7 +138,7 @@
             <!-- Section: Links  -->
             <!-- Copyright -->
             <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-                Copyright © Saudia Airlines 2020 all rights reserved
+                Copyright © Saudia Airlines 2021 all rights reserved
             </div>
             <!-- Copyright -->
         </footer>
